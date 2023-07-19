@@ -7,7 +7,7 @@ const listRoutes = require('./routes/listsRoutes.js');
 const app = express();
 
 // Call the createSchema function to create the schema
-createSchema();
+// createSchema();
 
 // Middleware to enable CORS
 app.use(cors());
