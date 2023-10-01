@@ -28,7 +28,7 @@ async function createSchema() {
       measurement VARCHAR(255),
       created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
       updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-      FOREIGN KEY (list_id) REFERENCES my_schema.lists(id),
+      FOREIGN KEY (list_id) REFERENCES my_schema.lists(id)
     );
   `;
 
