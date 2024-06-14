@@ -91,16 +91,15 @@ const listController = {
   },
 
   getActiveList: async (req, res) => {
+    let client;
     try {
-      const client = await pool.connect();
+      client = await pool.connect();
 
       const query = `
         SELECT * FROM my_schema.lists WHERE active = true;
       `;
       const result = await client.query(query);
       const activeList = result.rows[0];
-
-      client.release();
 
       if (!activeList) {
         return res.status(404).json({ message: "No active list found" });
@@ -110,6 +109,10 @@ const listController = {
     } catch (error) {
       console.error("Error fetching active list:", error);
       res.status(500).json({ message: "Internal server error" });
+    } finally {
+      if (client) {
+        client.release();
+      }
     }
   },
 
